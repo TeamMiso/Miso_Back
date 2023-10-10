@@ -44,6 +44,9 @@ dependencies {
 	// redis
 	implementation("org.springframework.boot:spring-boot-starter-data-redis")
 
+	//mail
+	implementation ("org.springframework.boot:spring-boot-starter-mail")
+
 	// s3
 	implementation("org.springframework.cloud:spring-cloud-starter-aws:2.2.6.RELEASE")
 
