@@ -6,9 +6,12 @@ import andreas311.miso.global.security.handler.CustomAccessDeniedHandler
 import andreas311.miso.global.security.handler.CustomAuthenticationEntryPointHandler
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.http.HttpMethod
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
 import org.springframework.security.config.http.SessionCreationPolicy
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
+import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.security.web.SecurityFilterChain
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
 import org.springframework.security.web.util.matcher.RequestMatcher
@@ -35,6 +38,8 @@ class SecurityConfig(
                 CorsUtils.isPreFlightRequest(request)
             }).permitAll()
 
+            .antMatchers(HttpMethod.POST, "/auth").permitAll()
+
             .anyRequest().denyAll()
             .and()
             .exceptionHandling()
@@ -46,5 +51,10 @@ class SecurityConfig(
             .addFilterBefore(jwtExceptionFilter, JwtRequestFilter::class.java)
 
             .build()
+    }
+
+    @Bean
+    fun passwordEncoder(): PasswordEncoder {
+        return BCryptPasswordEncoder(12)
     }
 }
