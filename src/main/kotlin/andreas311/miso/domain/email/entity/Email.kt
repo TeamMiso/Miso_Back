@@ -19,7 +19,7 @@ class Email(
     var randomKey: String,
 
     @Column(name = "authentication")
-    var authentication: Boolean = false
+    var authentication: Boolean
 ) {
     fun updateRandomKey(randomKey: String) {
         this.randomKey = randomKey
