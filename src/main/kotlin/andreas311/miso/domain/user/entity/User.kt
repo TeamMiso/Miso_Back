@@ -16,8 +16,10 @@ class User(
     @Column(columnDefinition = "BINARY(16)")
     var id: UUID,
 
+    @Column(name = "email")
     val email: String,
 
+    @Column(name = "password")
     val password: String,
 
     @Enumerated(EnumType.STRING)
