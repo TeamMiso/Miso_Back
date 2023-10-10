@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
 @Component
-class JwtExceptionFilter(
+class ExceptionFilter(
     private val objectMapper: ObjectMapper
 ) : OncePerRequestFilter() {
 
