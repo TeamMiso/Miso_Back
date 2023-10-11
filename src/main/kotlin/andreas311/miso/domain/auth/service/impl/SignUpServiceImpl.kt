@@ -2,7 +2,7 @@ package andreas311.miso.domain.auth.service.impl
 
 import andreas311.miso.domain.auth.exception.MismatchPasswordException
 import andreas311.miso.domain.auth.exception.UserAlreadyExistException
-import andreas311.miso.domain.auth.presentation.data.request.SignUpRequest
+import andreas311.miso.domain.auth.presentation.data.request.SignUpRequestDto
 import andreas311.miso.domain.auth.service.SignUpService
 import andreas311.miso.domain.email.service.EmailSendService
 import andreas311.miso.domain.user.repository.UserRepository
@@ -15,21 +15,21 @@ class SignUpServiceImpl(
     private val emailSendService: EmailSendService,
     private val passwordEncoder: PasswordEncoder
 ) : SignUpService {
-    override fun execute(signUpRequest: SignUpRequest) {
+    override fun execute(signUpRequestDto: SignUpRequestDto) {
 
-        if (userRepository.existsByEmail(signUpRequest.email)) {
+        if (userRepository.existsByEmail(signUpRequestDto.email)) {
             throw UserAlreadyExistException()
         }
 
-        if (signUpRequest.password != signUpRequest.passwordCheck) {
+        if (signUpRequestDto.password != signUpRequestDto.passwordCheck) {
             throw MismatchPasswordException()
         }
 
-        emailSendService.execute(signUpRequest.email)
+        emailSendService.execute(signUpRequestDto.email)
 
-        val encodedPassword = passwordEncoder.encode(signUpRequest.password)
+        val encodedPassword = passwordEncoder.encode(signUpRequestDto.password)
 
-        val user = signUpRequest.toEntity(encodedPassword)
+        val user = signUpRequestDto.toEntity(encodedPassword)
 
         userRepository.save(user)
     }
