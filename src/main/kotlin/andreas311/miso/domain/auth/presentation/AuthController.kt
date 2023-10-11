@@ -4,6 +4,7 @@ import andreas311.miso.domain.auth.presentation.data.request.SignInRequestDto
 import andreas311.miso.domain.auth.presentation.data.request.SignUpRequestDto
 import andreas311.miso.domain.auth.presentation.data.response.NewRefreshTokenResponseDto
 import andreas311.miso.domain.auth.presentation.data.response.SignInResponseDto
+import andreas311.miso.domain.auth.service.LogoutService
 import andreas311.miso.domain.auth.service.SignInService
 import andreas311.miso.domain.auth.service.SignUpService
 import andreas311.miso.domain.auth.service.TokenReissueService
@@ -11,16 +12,14 @@ import andreas311.miso.domain.auth.util.AuthConverter
 import andreas311.miso.global.annotation.RequestController
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
-import org.springframework.web.bind.annotation.PatchMapping
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RequestHeader
+import org.springframework.web.bind.annotation.*
 import javax.validation.Valid
 
 @RequestController("/auth")
 class AuthController(
     private val signUpService: SignUpService,
     private val signInService: SignInService,
+    private val logoutService: LogoutService,
     private val authConverter: AuthConverter,
     private val tokenReissueService: TokenReissueService
 ) {
@@ -34,6 +33,11 @@ class AuthController(
     fun signIn(@Valid @RequestBody signInRequestDto: SignInRequestDto): ResponseEntity<SignInResponseDto> =
         authConverter.toDto(signInRequestDto)
             .let { ResponseEntity.ok(signInService.execute(it)) }
+
+    @DeleteMapping
+    fun logout(): ResponseEntity<Void> =
+        logoutService.execute()
+            .let { ResponseEntity.status(HttpStatus.NO_CONTENT).build() }
 
     @PatchMapping
     fun getNewRefreshToken(@RequestHeader("Refresh-Token") refreshToken: String): ResponseEntity<NewRefreshTokenResponseDto> =
