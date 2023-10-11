@@ -4,7 +4,7 @@ import andreas311.miso.domain.user.entity.User
 import andreas311.miso.domain.user.enums.Role
 import java.util.*
 
-data class SignUpRequest(
+data class SignUpRequestDto(
     val email: String,
     val password: String,
     val passwordCheck: String

@@ -5,6 +5,8 @@ import org.springframework.data.repository.CrudRepository
 
 interface EmailRepository : CrudRepository<Email, Long> {
 
+    fun findByEmail(email: String): Email
+
     fun deleteByEmail(email: String)
 
     fun existsByEmail(email: String): Boolean
