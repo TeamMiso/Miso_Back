@@ -15,6 +15,7 @@ class SignUpServiceImpl(
     private val emailSendService: EmailSendService,
     private val passwordEncoder: PasswordEncoder
 ) : SignUpService {
+
     override fun execute(signUpRequestDto: SignUpRequestDto) {
 
         if (userRepository.existsByEmail(signUpRequestDto.email)) {
