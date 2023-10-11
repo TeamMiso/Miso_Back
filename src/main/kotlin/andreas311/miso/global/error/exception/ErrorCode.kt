@@ -12,6 +12,7 @@ enum class ErrorCode(
     EMAIL_SEND_FAIL(500, "사용자를 찾을 수 없습니다."),
 
     // USER
+    EMAIL_KEY_IS_INVALID(401, "이메일 인증번호가 일치하지 않습니다."),
     EMAIL_IS_NOT_VALID(403, "인증되지 않은 이메일입니다."),
     USER_NOT_FOUND(404, "사용자를 찾을 수 없습니다."),
     ROLE_NOT_EXIST(404, "역할이 존재하지 않습니다"),

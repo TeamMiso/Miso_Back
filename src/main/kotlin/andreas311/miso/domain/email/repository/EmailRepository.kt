@@ -10,4 +10,6 @@ interface EmailRepository : CrudRepository<Email, Long> {
     fun deleteByEmail(email: String)
 
     fun existsByEmail(email: String): Boolean
+
+    fun findByRandomKey(randomKey: String): Email?
 }
