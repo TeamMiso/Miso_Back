@@ -21,9 +21,6 @@ class Email(
     @Column(name = "authentication")
     var authentication: Boolean
 ) {
-    fun updateRandomKey(randomKey: String) {
-        this.randomKey = randomKey
-    }
 
     fun updateAuthentication(authentication: Boolean) {
         this.authentication = authentication
