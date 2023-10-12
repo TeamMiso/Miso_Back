@@ -22,6 +22,8 @@ class User(
     @Column(name = "password")
     val password: String,
 
+    var point: Int = 0,
+
     @Enumerated(EnumType.STRING)
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "Role", joinColumns = [JoinColumn(name = "user_id")])
