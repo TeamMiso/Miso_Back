@@ -29,4 +29,12 @@ class User(
     @CollectionTable(name = "Role", joinColumns = [JoinColumn(name = "user_id")])
     val role: MutableList<Role>
 ) {
+
+    fun addPoint(point: Int) {
+        this.point += point
+    }
+
+    fun removePoint(point: Int) {
+        this.point -= point
+    }
 }
