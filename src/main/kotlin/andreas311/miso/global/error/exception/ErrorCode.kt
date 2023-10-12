@@ -11,6 +11,10 @@ enum class ErrorCode(
     // MAIL
     EMAIL_SEND_FAIL(500, "사용자를 찾을 수 없습니다."),
 
+    //FILE
+    INVALID_FORMAT_FILE(400, "잘못된 형식의 파일입니다."),
+    FILE_UPLOAD_FAIL(500, "파일 업로드에 실패했습니다."),
+
     // TOKEN
     TOKEN_IS_EXPIRED(401, "토큰이 만료 되었습니다."),
     TOKEN_NOT_VALID(401, "토큰이 유효 하지 않습니다."),
