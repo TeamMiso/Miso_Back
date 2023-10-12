@@ -50,6 +50,7 @@ class SecurityConfig(
 
             .antMatchers(HttpMethod.GET, "/user").authenticated()
 
+            .antMatchers(HttpMethod.GET, "/purchase").authenticated()
             .antMatchers(HttpMethod.POST, "/purchase/{id}").authenticated()
 
             .anyRequest().denyAll()
