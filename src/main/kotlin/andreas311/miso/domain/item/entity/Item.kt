@@ -23,9 +23,5 @@ class Item(
     val content: String,
 
     @Column(name = "image_url")
-    val imageUrl: String,
-
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    val user: User
+    val imageUrl: String
 )
