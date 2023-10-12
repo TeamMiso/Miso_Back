@@ -47,6 +47,8 @@ class SecurityConfig(
 
             .antMatchers(HttpMethod.GET, "/item/{id}").authenticated()
 
+            .antMatchers(HttpMethod.GET, "/user").authenticated()
+
             .anyRequest().denyAll()
             .and()
             .exceptionHandling()

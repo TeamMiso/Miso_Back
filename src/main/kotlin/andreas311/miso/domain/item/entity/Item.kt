@@ -1,5 +1,6 @@
 package andreas311.miso.domain.item.entity
 
+import andreas311.miso.domain.user.entity.User
 import org.hibernate.annotations.DynamicUpdate
 import javax.persistence.*
 
@@ -22,5 +23,9 @@ class Item(
     val content: String,
 
     @Column(name = "image_url")
-    val imageUrl: String
+    val imageUrl: String,
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    val user: User
 )
