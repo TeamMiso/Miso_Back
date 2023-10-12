@@ -24,6 +24,7 @@ class AuthConverterImpl : AuthConverter {
             id = UUID.randomUUID(),
             email = user.email,
             password = user.password,
+            point = 0,
             role = mutableListOf(Role.ROLE_USER)
         )
 
@@ -32,6 +33,7 @@ class AuthConverterImpl : AuthConverter {
             id = UUID.randomUUID(),
             email = user.email,
             password = user.password,
+            point = 0,
             role = mutableListOf(Role.ROLE_ADMIN)
         )
 
