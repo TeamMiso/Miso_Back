@@ -1,6 +1,5 @@
 package andreas311.miso.domain.item.entity
 
-import andreas311.miso.domain.user.entity.User
 import org.hibernate.annotations.DynamicUpdate
 import javax.persistence.*
 
