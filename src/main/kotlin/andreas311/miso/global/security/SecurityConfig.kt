@@ -54,6 +54,7 @@ class SecurityConfig(
             .antMatchers(HttpMethod.POST, "/purchase/{id}").authenticated()
 
             .antMatchers(HttpMethod.POST, "/inquiry").authenticated()
+            .antMatchers(HttpMethod.GET, "/inquiry").authenticated()
 
             .anyRequest().denyAll()
             .and()
