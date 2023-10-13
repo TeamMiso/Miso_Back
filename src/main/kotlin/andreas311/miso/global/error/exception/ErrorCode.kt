@@ -32,7 +32,8 @@ enum class ErrorCode(
 
     // PURCHASE
     POINT_IS_NOT_ENOUGH(403, "포인트가 부족합니다."),
-    PURCHASE_LOG_NOT_FOUND(404, "구매 기록을 찾을 수 없습니다.")
+    PURCHASE_LOG_NOT_FOUND(404, "구매 기록을 찾을 수 없습니다."),
 
-
+    // INQUIRY
+    INQUIRY_LOG_NOT_FOUND(404, "문의 내역을 찾을 수 없습니다.")
 }
