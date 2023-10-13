@@ -2,6 +2,7 @@ package andreas311.miso.domain.inquiry.entity
 
 import andreas311.miso.domain.inquiry.enums.InquiryStatus
 import andreas311.miso.domain.user.entity.User
+import andreas311.miso.global.entity.BaseTimeEntity
 import org.hibernate.annotations.DynamicUpdate
 import javax.persistence.*
 
@@ -29,4 +30,4 @@ class Inquiry(
     @ManyToOne
     @JoinColumn(name = "user_id")
     val user: User
-)
+) : BaseTimeEntity()
