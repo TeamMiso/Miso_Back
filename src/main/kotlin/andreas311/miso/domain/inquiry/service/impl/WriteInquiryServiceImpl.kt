@@ -44,7 +44,7 @@ class WriteInquiryServiceImpl(
             title = writeInquiryDto.title,
             content = writeInquiryDto.content,
             imageUrl = imageUrl,
-            inquiryStatus = InquiryStatus.WAITING,
+            inquiryStatus = InquiryStatus.WAIT,
             user = user
         )
 
