@@ -1,5 +1,5 @@
 package andreas311.miso.domain.inquiry.enums
 
 enum class InquiryStatus(val value: String) {
-    WAITING("대기중"), COMPLETE("완료");
+    WAIT("대기중"), ADOPT("채택"), UNADOPT("비채택");
 }
