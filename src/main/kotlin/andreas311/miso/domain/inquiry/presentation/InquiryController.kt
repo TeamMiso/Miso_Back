@@ -4,6 +4,7 @@ import andreas311.miso.domain.inquiry.presentation.data.request.WriteInquiryRequ
 import andreas311.miso.domain.inquiry.presentation.data.response.DetailInquiryResponseDto
 import andreas311.miso.domain.inquiry.presentation.data.response.ListInquiryResponseDto
 import andreas311.miso.domain.inquiry.service.DetailInquiryService
+import andreas311.miso.domain.inquiry.service.ListAllInquiryService
 import andreas311.miso.domain.inquiry.service.ListMyInquiryService
 import andreas311.miso.domain.inquiry.service.WriteInquiryService
 import andreas311.miso.global.annotation.RequestController
@@ -20,6 +21,7 @@ class InquiryController(
     private val writeInquiryService: WriteInquiryService,
     private val listMyInquiryService: ListMyInquiryService,
     private val detailInquiryService: DetailInquiryService,
+    private val listAllInquiryService: ListAllInquiryService
 ) {
 
     @PostMapping
@@ -33,6 +35,11 @@ class InquiryController(
     @GetMapping
     fun inquiryLog(): ResponseEntity<ListInquiryResponseDto> =
         listMyInquiryService.execute()
+            .let { ResponseEntity.status(HttpStatus.OK).body(it) }
+
+    @GetMapping("/all")
+    fun inquiryAll(): ResponseEntity<ListInquiryResponseDto> =
+        listAllInquiryService.execute()
             .let { ResponseEntity.status(HttpStatus.OK).body(it) }
 
     @GetMapping("/{id}")
