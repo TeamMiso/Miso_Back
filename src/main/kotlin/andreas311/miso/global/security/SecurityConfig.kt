@@ -57,6 +57,7 @@ class SecurityConfig(
             .antMatchers(HttpMethod.GET, "/inquiry").authenticated()
             .antMatchers(HttpMethod.GET, "/inquiry/all").hasAuthority("ROLE_ADMIN")
             .antMatchers(HttpMethod.GET, "/inquiry/{id}").authenticated()
+            .antMatchers(HttpMethod.PATCH, "/inquiry/adopt/{id}").hasAuthority("ROLE_ADMIN")
 
             .anyRequest().denyAll()
             .and()
