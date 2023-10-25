@@ -20,7 +20,8 @@ class InquiryController(
     private val listMyInquiryService: ListMyInquiryService,
     private val detailInquiryService: DetailInquiryService,
     private val listAllInquiryService: ListAllInquiryService,
-    private val adoptInquiryService: AdoptInquiryService
+    private val adoptInquiryService: AdoptInquiryService,
+    private val unAdoptInquiryService: UnAdoptInquiryService
 ) {
 
     @PostMapping
@@ -49,6 +50,11 @@ class InquiryController(
     @PatchMapping("/adopt/{id}")
     fun adopt(@PathVariable id: Long): ResponseEntity<Void> =
         adoptInquiryService.execute(id)
+            .let { ResponseEntity.status(HttpStatus.OK).build() }
+
+    @PatchMapping("/unadopt/{id}")
+    fun unAdopt(@PathVariable id: Long): ResponseEntity<Void> =
+        unAdoptInquiryService.execute(id)
             .let { ResponseEntity.status(HttpStatus.OK).build() }
 
 }
