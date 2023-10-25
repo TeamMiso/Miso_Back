@@ -25,9 +25,13 @@ class Inquiry(
     val imageUrl: String?,
 
     @Column(name = "inquiryStatus")
-    val inquiryStatus: InquiryStatus,
+    var inquiryStatus: InquiryStatus,
 
     @ManyToOne
     @JoinColumn(name = "user_id")
     val user: User
-) : BaseTimeEntity()
+) : BaseTimeEntity() {
+    fun updateInquiryStatus(inquiryStatus: InquiryStatus) {
+        this.inquiryStatus = inquiryStatus
+    }
+}
