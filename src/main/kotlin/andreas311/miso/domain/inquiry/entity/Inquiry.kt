@@ -24,6 +24,7 @@ class Inquiry(
     @Column(name = "imageUrl")
     val imageUrl: String?,
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "inquiryStatus")
     var inquiryStatus: InquiryStatus,
 
