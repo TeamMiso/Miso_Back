@@ -35,5 +35,8 @@ enum class ErrorCode(
     PURCHASE_LOG_NOT_FOUND(404, "구매 기록을 찾을 수 없습니다."),
 
     // INQUIRY
-    INQUIRY_LOG_NOT_FOUND(404, "문의 내역을 찾을 수 없습니다.")
+    INQUIRY_LOG_NOT_FOUND(404, "문의 내역을 찾을 수 없습니다."),
+
+    // RECYCLABLES
+    RECYCLABLES_NOT_FOUND(404, "분리수거 페이지를 찾을 수 없습니다.")
 }
