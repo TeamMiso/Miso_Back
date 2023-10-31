@@ -61,6 +61,8 @@ class SecurityConfig(
             .antMatchers(HttpMethod.PATCH, "/inquiry/adopt/{id}").hasAuthority("ROLE_ADMIN")
             .antMatchers(HttpMethod.PATCH, "/inquiry/unadopt/{id}").hasAuthority("ROLE_ADMIN")
 
+            .antMatchers(HttpMethod.GET, "/recyclables").authenticated()
+
             .anyRequest().denyAll()
             .and()
             .exceptionHandling()
