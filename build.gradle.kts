@@ -3,9 +3,13 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
 	id("org.springframework.boot") version "2.7.16"
 	id("io.spring.dependency-management") version "1.0.15.RELEASE"
+	id("com.ewerk.gradle.plugins.querydsl") version "1.0.10"
+
 	kotlin("jvm") version "1.6.21"
 	kotlin("plugin.spring") version "1.6.21"
 	kotlin("plugin.jpa") version "1.6.21"
+	kotlin("kapt") version "1.7.10"
+	idea
 }
 
 group = "andreas311"
@@ -44,11 +48,19 @@ dependencies {
 	// redis
 	implementation("org.springframework.boot:spring-boot-starter-data-redis")
 
+	// mail
+	implementation ("org.springframework.boot:spring-boot-starter-mail")
+
 	// s3
 	implementation("org.springframework.cloud:spring-cloud-starter-aws:2.2.6.RELEASE")
 
 	// test
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
+
+	// query_dsl
+	implementation("com.querydsl:querydsl-jpa:5.0.0")
+	implementation("com.querydsl:querydsl-apt:5.0.0:jpa")
+	kapt("com.querydsl:querydsl-apt:5.0.0:jpa")
 }
 
 tasks.withType<KotlinCompile> {
@@ -60,4 +72,13 @@ tasks.withType<KotlinCompile> {
 
 tasks.withType<Test> {
 	useJUnitPlatform()
+}
+
+// query_dsl
+idea {
+	module {
+		val kaptMain = file("build/generated/source/kapt/main")
+		sourceDirs.add(kaptMain)
+		generatedSourceDirs.add(kaptMain)
+	}
 }
