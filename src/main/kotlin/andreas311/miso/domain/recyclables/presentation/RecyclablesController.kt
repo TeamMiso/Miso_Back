@@ -1,7 +1,7 @@
 package andreas311.miso.domain.recyclables.presentation
 
 import andreas311.miso.domain.recyclables.enums.RecyclablesType
-import andreas311.miso.domain.recyclables.presentation.data.response.DetailRecyclablesResponseDto
+import andreas311.miso.domain.recyclables.presentation.data.response.RecyclablesResponseDto
 import andreas311.miso.domain.recyclables.service.DetailRecyclablesService
 import andreas311.miso.global.annotation.RequestController
 import org.springframework.http.HttpStatus
@@ -15,7 +15,7 @@ class RecyclablesController(
 ) {
 
     @GetMapping
-    fun execute(@RequestParam recyclablesType: RecyclablesType): ResponseEntity<DetailRecyclablesResponseDto> =
+    fun detail(@RequestParam recyclablesType: RecyclablesType): ResponseEntity<RecyclablesResponseDto> =
         detailRecyclablesService.execute(recyclablesType)
             .let { ResponseEntity.status(HttpStatus.OK).body(it) }
 }
