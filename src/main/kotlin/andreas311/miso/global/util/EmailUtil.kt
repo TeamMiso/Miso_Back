@@ -9,7 +9,7 @@ class EmailUtil {
     fun createRandomKey(): String {
         val random = Random()
 
-        val randomKey = random.nextInt(888888) + 111111
+        val randomKey = random.nextInt(8888) + 1111
 
         return randomKey.toString()
     }
