@@ -1,5 +1,6 @@
 package andreas311.miso.global.security
 
+import andreas311.miso.global.logger.filter.LogRequestFilter
 import andreas311.miso.global.security.filter.JwtExceptionFilter
 import andreas311.miso.global.security.filter.JwtRequestFilter
 import andreas311.miso.global.security.handler.CustomAccessDeniedHandler
@@ -21,7 +22,8 @@ import org.springframework.web.cors.CorsUtils
 @EnableWebSecurity
 class SecurityConfig(
     private val jwtExceptionFilter: JwtExceptionFilter,
-    private val jwtRequestFilter: JwtRequestFilter
+    private val jwtRequestFilter: JwtRequestFilter,
+    private val logRequestFilter: LogRequestFilter
 ) {
 
     @Bean
@@ -62,6 +64,7 @@ class SecurityConfig(
             .antMatchers(HttpMethod.PATCH, "/inquiry/unadopt/{id}").hasAuthority("ROLE_ADMIN")
 
             .antMatchers(HttpMethod.GET, "/recyclables").authenticated()
+            .antMatchers(HttpMethod.GET, "/recyclables/search").authenticated()
 
             .anyRequest().denyAll()
             .and()
@@ -72,6 +75,7 @@ class SecurityConfig(
             .and()
             .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter::class.java)
             .addFilterBefore(jwtExceptionFilter, JwtRequestFilter::class.java)
+            .addFilterBefore(logRequestFilter, JwtExceptionFilter::class.java)
 
             .build()
     }

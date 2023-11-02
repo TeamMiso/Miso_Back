@@ -61,3 +61,7 @@ logging:
       amazonaws:
         util:
           EC2MetadataUtils: error
+
+discord:
+  webhook:
+    url: ${WEBHOOK_URL}

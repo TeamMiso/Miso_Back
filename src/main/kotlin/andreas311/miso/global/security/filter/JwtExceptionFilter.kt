@@ -39,6 +39,7 @@ class JwtExceptionFilter(
         } catch (ex: Exception) {
             log.debug("================= [ ExceptionHandlerFilter ] 에서 Exception 발생 ===================")
             setErrorResponse(ErrorCode.UNKNOWN_ERROR, response)
+            ex.printStackTrace()
         }
     }
 

@@ -61,6 +61,9 @@ dependencies {
 	implementation("com.querydsl:querydsl-jpa:5.0.0")
 	implementation("com.querydsl:querydsl-apt:5.0.0:jpa")
 	kapt("com.querydsl:querydsl-apt:5.0.0:jpa")
+
+	// web_hook
+	implementation("com.squareup.okhttp3:okhttp:4.10.0")
 }
 
 tasks.withType<KotlinCompile> {
