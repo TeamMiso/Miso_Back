@@ -5,11 +5,11 @@ import andreas311.miso.domain.inquiry.entity.Inquiry
 import andreas311.miso.domain.inquiry.enums.InquiryStatus
 import andreas311.miso.domain.inquiry.presentation.data.dto.WriteInquiryDto
 import andreas311.miso.domain.inquiry.presentation.data.request.WriteInquiryRequestDto
-import andreas311.miso.domain.inquiry.repository.InquiryRepository
 import andreas311.miso.domain.inquiry.service.WriteInquiryService
 import andreas311.miso.domain.inquiry.util.InquiryUtil
 import andreas311.miso.domain.user.entity.User
 import andreas311.miso.global.annotation.RollbackService
+import andreas311.miso.global.discord.DiscordUtil
 import andreas311.miso.global.util.UserUtil
 import org.springframework.web.multipart.MultipartFile
 
@@ -17,8 +17,8 @@ import org.springframework.web.multipart.MultipartFile
 class WriteInquiryServiceImpl(
     private val userUtil: UserUtil,
     private val inquiryUtil: InquiryUtil,
-    private val fileService: FileService,
-    private val inquiryRepository: InquiryRepository
+    private val discordUtil: DiscordUtil,
+    private val fileService: FileService
 ) : WriteInquiryService {
 
     override fun execute(writeInquiryRequestDto: WriteInquiryRequestDto, multipartFile: MultipartFile?): Inquiry {
@@ -28,11 +28,16 @@ class WriteInquiryServiceImpl(
         val writeInquiryDto: WriteInquiryDto = toDto(writeInquiryRequestDto = writeInquiryRequestDto)
 
         if (multipartFile == null) {
+
+            sendDiscordMessage(writeInquiryRequestDto)
+
             return toEntity(writeInquiryDto, user, imageUrl = null)
                 .let { inquiryUtil.saveInquiry(inquiry = it) }
         }
 
         val imageUrl = fileService.execute(multipartFile)
+
+        sendDiscordMessage(writeInquiryRequestDto)
 
         return toEntity(writeInquiryDto, user, imageUrl)
             .let { inquiryUtil.saveInquiry(inquiry = it) }
@@ -53,4 +58,11 @@ class WriteInquiryServiceImpl(
             title = writeInquiryRequestDto.title,
             content = writeInquiryRequestDto.content
         )
+
+    private fun sendDiscordMessage(writeInquiryRequestDto: WriteInquiryRequestDto) {
+
+        val inquiryMessage = discordUtil.createInquiryMessage(writeInquiryRequestDto.title)
+
+        discordUtil.sendDiscordMessage(inquiryMessage)
+    }
 }
