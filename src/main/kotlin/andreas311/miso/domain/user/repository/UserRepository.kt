@@ -9,4 +9,6 @@ interface UserRepository : CrudRepository<User, UUID> {
     fun findByEmail(email: String): User?
 
     fun existsByEmail(email: String): Boolean
+
+    fun deleteByEmail(email: String)
 }
