@@ -11,12 +11,8 @@ class ListAllInquiryServiceImpl(
     private val inquiryRepository: InquiryRepository
 ) : ListAllInquiryService {
 
-    override fun execute(): ListInquiryResponseDto {
-
-        val inquiry = inquiryRepository.findAll()
-
-        return ListInquiryResponseDto(
-            inquiryList = inquiry.map { InquiryResponseDto(it) }
-        )
-    }
+    override fun execute(): ListInquiryResponseDto = ListInquiryResponseDto(
+        inquiryList = inquiryRepository.findAll()
+            .map { InquiryResponseDto(it) }
+    )
 }

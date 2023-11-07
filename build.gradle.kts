@@ -1,14 +1,14 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-	id("org.springframework.boot") version "2.7.16"
-	id("io.spring.dependency-management") version "1.0.15.RELEASE"
-	id("com.ewerk.gradle.plugins.querydsl") version "1.0.10"
+	id("org.springframework.boot") version PluginVersions.SPRING_BOOT_VERSION
+	id("io.spring.dependency-management") version PluginVersions.SPRING_MANAGE_VERSION
+	id("com.ewerk.gradle.plugins.querydsl") version PluginVersions.QUERY_DSL_PLUGIN_VERSION
 
-	kotlin("jvm") version "1.6.21"
-	kotlin("plugin.spring") version "1.6.21"
-	kotlin("plugin.jpa") version "1.6.21"
-	kotlin("kapt") version "1.7.10"
+	kotlin("jvm") version PluginVersions.JVM_VERSION
+	kotlin("plugin.spring") version PluginVersions.SPRING_PLUG_IN_VERSION
+	kotlin("plugin.jpa") version PluginVersions.JPA_VERSION
+	kotlin("kapt") version PluginVersions.KAPT_VERSION
 	idea
 }
 
@@ -26,44 +26,44 @@ repositories {
 dependencies {
 
 	// kotlin
-	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-	implementation("org.jetbrains.kotlin:kotlin-reflect")
+	implementation(Dependencies.KOTLIN_JACKSON)
+	implementation(Dependencies.KOTLIN_REFLECT)
 
 	// web
-	implementation("org.springframework.boot:spring-boot-starter-web")
-	implementation("org.springframework.boot:spring-boot-starter-validation")
+	implementation(Dependencies.WEB)
+	implementation(Dependencies.VALIDATION)
 
 	// db
-	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-	runtimeOnly ("org.mariadb.jdbc:mariadb-java-client:3.1.2")
+	implementation(Dependencies.SPRING_JPA)
+	runtimeOnly(Dependencies.MARIA_DATABASE)
 
 	// security
-	implementation("org.springframework.boot:spring-boot-starter-security")
+	implementation(Dependencies.SECURITY)
 
 	// jjwt
-	implementation("io.jsonwebtoken:jjwt-api:0.11.5")
-	runtimeOnly("io.jsonwebtoken:jjwt-impl:0.11.5")
-	runtimeOnly("io.jsonwebtoken:jjwt-jackson:0.11.5")
+	implementation(Dependencies.JWT_API)
+	runtimeOnly(Dependencies.JWT_IMPL)
+	runtimeOnly(Dependencies.JWT_JACKSON)
 
 	// redis
-	implementation("org.springframework.boot:spring-boot-starter-data-redis")
+	implementation(Dependencies.SPRING_REDIS)
 
 	// mail
-	implementation ("org.springframework.boot:spring-boot-starter-mail")
+	implementation(Dependencies.MAIL)
 
 	// s3
-	implementation("org.springframework.cloud:spring-cloud-starter-aws:2.2.6.RELEASE")
+	implementation(Dependencies.SPRING_CLOUD)
 
 	// test
-	testImplementation("org.springframework.boot:spring-boot-starter-test")
+	testImplementation(Dependencies.SPRING_TEST)
 
 	// query_dsl
-	implementation("com.querydsl:querydsl-jpa:5.0.0")
-	implementation("com.querydsl:querydsl-apt:5.0.0:jpa")
-	kapt("com.querydsl:querydsl-apt:5.0.0:jpa")
+	implementation(Dependencies.QUERY_DSL)
+	implementation(Dependencies.QUERY_DSL_APT)
+	kapt(Dependencies.QUERY_DSL_APT)
 
 	// web_hook
-	implementation("com.squareup.okhttp3:okhttp:4.10.0")
+	implementation(Dependencies.OK_HTTP)
 }
 
 tasks.withType<KotlinCompile> {
