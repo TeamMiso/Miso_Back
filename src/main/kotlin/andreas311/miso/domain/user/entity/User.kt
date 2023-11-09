@@ -31,10 +31,14 @@ class User(
 ) {
 
     fun addPoint(point: Int) {
-        this.point += point
+        synchronized(this) {
+            this.point += point
+        }
     }
 
     fun removePoint(point: Int) {
-        this.point -= point
+        synchronized(this) {
+            this.point -= point
+        }
     }
 }
