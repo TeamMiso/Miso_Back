@@ -52,6 +52,7 @@ class SecurityConfig(
 
             .antMatchers(HttpMethod.GET, "/user").authenticated()
             .antMatchers(HttpMethod.GET, "/user/point").authenticated()
+            .antMatchers(HttpMethod.POST, "/user/give").authenticated()
 
             .antMatchers(HttpMethod.GET, "/purchase").authenticated()
             .antMatchers(HttpMethod.POST, "/purchase/{id}").authenticated()
