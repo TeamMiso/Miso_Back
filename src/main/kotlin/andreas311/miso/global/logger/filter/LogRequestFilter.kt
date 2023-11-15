@@ -22,6 +22,6 @@ class LogRequestFilter : OncePerRequestFilter() {
         log.info("request url = ${request.requestURI}")
         log.info("client info = ${request.getHeader("User-Agent")}")
         filterChain.doFilter(request, response)
-        log.info("response status = ${response.status}")
+        log.info("response status = ${response.status} \n\n")
     }
 }
