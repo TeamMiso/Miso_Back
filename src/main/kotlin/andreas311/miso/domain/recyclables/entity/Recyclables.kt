@@ -19,7 +19,7 @@ class Recyclables(
     @Column(name = "sub_title")
     val subTitle: String,
 
-    @Column(name = "content")
+    @Column(name = "content", length = 10000)
     val content: String,
 
     @Column(name = "imageUrl")
