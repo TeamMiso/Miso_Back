@@ -11,6 +11,7 @@ import andreas311.miso.domain.user.entity.User
 import andreas311.miso.global.annotation.RollbackService
 import andreas311.miso.global.util.UserUtil
 import org.springframework.data.repository.findByIdOrNull
+import java.time.LocalDateTime
 
 @RollbackService
 class PurchaseItemServiceImpl(
@@ -39,6 +40,7 @@ class PurchaseItemServiceImpl(
         Purchase(
             id = 0L,
             user = user,
-            item = item
+            item = item,
+            createdDate = LocalDateTime.now()
         )
 }

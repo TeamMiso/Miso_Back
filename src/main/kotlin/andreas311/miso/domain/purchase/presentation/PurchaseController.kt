@@ -1,6 +1,6 @@
 package andreas311.miso.domain.purchase.presentation
 
-import andreas311.miso.domain.item.presentation.data.response.ListItemResponseDto
+import andreas311.miso.domain.purchase.presentation.data.response.ListMyPurchaseItemResponseDto
 import andreas311.miso.domain.purchase.service.ListMyPurchaseItemService
 import andreas311.miso.domain.purchase.service.PurchaseItemService
 import andreas311.miso.global.annotation.RequestController
@@ -17,7 +17,7 @@ class PurchaseController(
 ) {
 
     @GetMapping
-    fun purchaseLog(): ResponseEntity<ListItemResponseDto> =
+    fun purchaseLog(): ResponseEntity<ListMyPurchaseItemResponseDto> =
         listMyPurchaseItemService.execute()
             .let { ResponseEntity.status(HttpStatus.OK).body(it) }
 
