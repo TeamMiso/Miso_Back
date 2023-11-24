@@ -3,6 +3,7 @@ package andreas311.miso.domain.purchase.entity
 import andreas311.miso.domain.item.entity.Item
 import andreas311.miso.domain.user.entity.User
 import org.hibernate.annotations.DynamicUpdate
+import java.time.LocalDateTime
 import javax.persistence.*
 
 @Entity
@@ -20,5 +21,7 @@ class Purchase(
 
     @ManyToOne
     @JoinColumn(name = "item_id")
-    val item: Item
+    val item: Item,
+
+    val createdDate: LocalDateTime
 )
