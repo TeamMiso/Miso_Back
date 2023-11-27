@@ -2,6 +2,7 @@ package andreas311.miso.domain.purchase.service.impl
 
 import andreas311.miso.domain.item.entity.Item
 import andreas311.miso.domain.item.exception.ItemNotFoundException
+import andreas311.miso.domain.item.exception.ItemSoldOutException
 import andreas311.miso.domain.item.repository.ItemRepository
 import andreas311.miso.domain.purchase.entity.Purchase
 import andreas311.miso.domain.purchase.exception.PointNotEnoughException
@@ -26,6 +27,12 @@ class PurchaseItemServiceImpl(
 
         val item = itemRepository.findByIdOrNull(id)
             ?: throw ItemNotFoundException()
+
+        if (item.amount == 0) {
+            throw ItemSoldOutException()
+        }
+
+        item.removeAmount()
 
         if (item.price > user.point) {
             throw PointNotEnoughException()
