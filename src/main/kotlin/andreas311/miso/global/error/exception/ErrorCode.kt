@@ -29,6 +29,7 @@ enum class ErrorCode(
 
     // ITEM
     ITEM_NOT_FOUND(404, "상품을 찾을 수 없습니다."),
+    ITEM_IS_SOLD_OUT(410, "상품의 재고가 남아있지 않습니다."),
 
     // PURCHASE
     POINT_IS_NOT_ENOUGH(403, "포인트가 부족합니다."),

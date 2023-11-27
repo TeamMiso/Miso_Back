@@ -15,6 +15,9 @@ class Item(
     @Column(name = "price")
     val price: Int,
 
+    @Column(name = "amount")
+    var amount: Int,
+
     @Column(name = "name")
     val name: String,
 
@@ -23,4 +26,11 @@ class Item(
 
     @Column(name = "image_url")
     val imageUrl: String
-)
+) {
+
+    fun removeAmount() {
+        synchronized(this) {
+            this.amount -= 1
+        }
+    }
+}
