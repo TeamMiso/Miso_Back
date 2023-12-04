@@ -6,18 +6,23 @@ import andreas311.miso.domain.recyclables.presentation.data.response.ListSearchR
 import andreas311.miso.domain.recyclables.presentation.data.response.SearchRecyclablesResponseDto
 import andreas311.miso.domain.recyclables.service.DetailRecyclablesService
 import andreas311.miso.domain.recyclables.service.ListAllRecyclablesService
+import andreas311.miso.domain.recyclables.service.ProcessRecyclablesImageService
 import andreas311.miso.domain.recyclables.service.SearchRecyclablesService
 import andreas311.miso.global.annotation.RequestController
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestParam
+import org.springframework.web.bind.annotation.RequestPart
+import org.springframework.web.multipart.MultipartFile
 
 @RequestController("/recyclables")
 class RecyclablesController(
     private val detailRecyclablesService: DetailRecyclablesService,
     private val searchRecyclablesService: SearchRecyclablesService,
-    private val listAllRecyclablesService: ListAllRecyclablesService
+    private val listAllRecyclablesService: ListAllRecyclablesService,
+    private val processRecyclablesImageService: ProcessRecyclablesImageService
 ) {
 
     @GetMapping
@@ -33,5 +38,10 @@ class RecyclablesController(
     @GetMapping("/all")
     fun recyclablesAll(): ResponseEntity<ListSearchRecyclablesResponseDto> =
         listAllRecyclablesService.execute()
+            .let { ResponseEntity.status(HttpStatus.OK).body(it) }
+
+    @PostMapping("/process_image")
+    fun process(@RequestPart(value = "recyclables") multipartFile: MultipartFile): ResponseEntity<DetailRecyclablesResponseDto> =
+        processRecyclablesImageService.execute(multipartFile)
             .let { ResponseEntity.status(HttpStatus.OK).body(it) }
 }
