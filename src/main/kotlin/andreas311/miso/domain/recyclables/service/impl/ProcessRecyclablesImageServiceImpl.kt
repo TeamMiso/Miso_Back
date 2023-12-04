@@ -3,6 +3,7 @@ package andreas311.miso.domain.recyclables.service.impl
 import andreas311.miso.domain.recyclables.enums.RecyclablesType
 import andreas311.miso.domain.recyclables.exception.RecyclablesNotFoundException
 import andreas311.miso.domain.recyclables.presentation.data.response.DetailRecyclablesResponseDto
+import andreas311.miso.domain.recyclables.presentation.data.response.ListDetailRecyclablesResponseDto
 import andreas311.miso.domain.recyclables.repository.RecyclablesRepository
 import andreas311.miso.domain.recyclables.service.ProcessRecyclablesImageService
 import andreas311.miso.global.annotation.ReadOnlyService
@@ -22,15 +23,21 @@ class ProcessRecyclablesImageServiceImpl(
     @Value("\${secret-url}")
     private val url: String = ""
 
-    override fun execute(multipartFile: MultipartFile): DetailRecyclablesResponseDto {
-        val result = restTemplate.postForObject(url, mapOf("image_url" to Base64.getEncoder().encodeToString(multipartFile.bytes)), String::class.java)
-            ?.uppercase()?.replace(" ", "_")?.replace("\"", "")?.trim()
+    override fun execute(multipartFile: MultipartFile): ListDetailRecyclablesResponseDto {
+        val result = restTemplate.postForObject(url, mapOf("image_url" to Base64.getEncoder().encodeToString(multipartFile.bytes)), List::class.java)
+            ?.map { it as String }
 
-        val recyclablesType = result?.let { RecyclablesType.valueOf(it) }
+        val detailRecyclablesList = result?.map {
+            it.uppercase().replace(" ", "_").replace("\"", "").trim()
+        }?.mapNotNull { recyclablesType ->
+            runCatching {
+                val type = RecyclablesType.valueOf(recyclablesType)
+                recyclablesRepository.findByRecyclablesType(type)
+            }.getOrNull()
+        } ?: throw RecyclablesNotFoundException()
 
-        val recyclables = recyclablesType?.let { recyclablesRepository.findByRecyclablesType(it) }
-            ?: throw RecyclablesNotFoundException()
+        val recyclablesList = detailRecyclablesList.map { DetailRecyclablesResponseDto(it) }
 
-        return DetailRecyclablesResponseDto(recyclables)
+        return ListDetailRecyclablesResponseDto(recyclablesList)
     }
 }
