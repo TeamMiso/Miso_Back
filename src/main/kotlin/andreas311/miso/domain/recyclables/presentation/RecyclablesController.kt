@@ -2,6 +2,7 @@ package andreas311.miso.domain.recyclables.presentation
 
 import andreas311.miso.domain.recyclables.enums.RecyclablesType
 import andreas311.miso.domain.recyclables.presentation.data.response.DetailRecyclablesResponseDto
+import andreas311.miso.domain.recyclables.presentation.data.response.ListDetailRecyclablesResponseDto
 import andreas311.miso.domain.recyclables.presentation.data.response.ListSearchRecyclablesResponseDto
 import andreas311.miso.domain.recyclables.presentation.data.response.SearchRecyclablesResponseDto
 import andreas311.miso.domain.recyclables.service.DetailRecyclablesService
@@ -41,7 +42,7 @@ class RecyclablesController(
             .let { ResponseEntity.status(HttpStatus.OK).body(it) }
 
     @PostMapping("/process_image")
-    fun process(@RequestPart(value = "recyclables") multipartFile: MultipartFile): ResponseEntity<DetailRecyclablesResponseDto> =
+    fun process(@RequestPart(value = "recyclables") multipartFile: MultipartFile): ResponseEntity<ListDetailRecyclablesResponseDto> =
         processRecyclablesImageService.execute(multipartFile)
             .let { ResponseEntity.status(HttpStatus.OK).body(it) }
 }
