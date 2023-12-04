@@ -7,4 +7,6 @@ import org.springframework.data.repository.CrudRepository
 interface RecyclablesRepository : CrudRepository<Recyclables, Long>, RecyclablesRepositoryCustom {
 
     fun findByRecyclablesType(recyclablesType: RecyclablesType): Recyclables?
+
+    fun findAllByOrderByTitleAsc(): List<Recyclables>
 }
