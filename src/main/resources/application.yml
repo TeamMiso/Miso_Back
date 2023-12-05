@@ -65,3 +65,5 @@ logging:
 discord:
   webhook:
     url: ${WEBHOOK_URL}
+
+secret-url: ${SECRET_URL}
