@@ -66,6 +66,8 @@ class SecurityConfig(
 
             .antMatchers(HttpMethod.GET, "/recyclables").authenticated()
             .antMatchers(HttpMethod.GET, "/recyclables/search").authenticated()
+            .antMatchers(HttpMethod.GET, "/recyclables/all").authenticated()
+            .antMatchers(HttpMethod.POST, "/recyclables/process_image").authenticated()
 
             .anyRequest().denyAll()
             .and()
