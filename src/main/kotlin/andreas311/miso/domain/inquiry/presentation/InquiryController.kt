@@ -4,6 +4,7 @@ import andreas311.miso.domain.inquiry.presentation.data.request.WriteInquiryRequ
 import andreas311.miso.domain.inquiry.presentation.data.response.DetailInquiryResponseDto
 import andreas311.miso.domain.inquiry.presentation.data.response.ListInquiryResponseDto
 import andreas311.miso.domain.inquiry.service.*
+import andreas311.miso.domain.notification.presentation.data.request.WriteNotificationRequestDto
 import andreas311.miso.global.annotation.RequestController
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PatchMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestPart
 import org.springframework.web.multipart.MultipartFile
 
@@ -48,13 +50,12 @@ class InquiryController(
             .let { ResponseEntity.status(HttpStatus.OK).body(it) }
 
     @PatchMapping("/adopt/{id}")
-    fun adopt(@PathVariable id: Long): ResponseEntity<Void> =
-        adoptInquiryService.execute(id)
+    fun adopt(@PathVariable id: Long, @RequestBody writeNotificationRequestDto: WriteNotificationRequestDto): ResponseEntity<Void> =
+        adoptInquiryService.execute(id, writeNotificationRequestDto)
             .let { ResponseEntity.status(HttpStatus.OK).build() }
 
     @PatchMapping("/unadopt/{id}")
-    fun unAdopt(@PathVariable id: Long): ResponseEntity<Void> =
-        unAdoptInquiryService.execute(id)
+    fun unAdopt(@PathVariable id: Long, @RequestBody writeNotificationRequestDto: WriteNotificationRequestDto): ResponseEntity<Void> =
+        unAdoptInquiryService.execute(id, writeNotificationRequestDto)
             .let { ResponseEntity.status(HttpStatus.OK).build() }
-
 }

@@ -1,0 +1,19 @@
+package andreas311.miso.domain.notification.presentation
+
+import andreas311.miso.domain.notification.service.SaveDeviceTokenService
+import andreas311.miso.global.annotation.RequestController
+import org.springframework.http.HttpStatus
+import org.springframework.http.ResponseEntity
+import org.springframework.web.bind.annotation.PathVariable
+import org.springframework.web.bind.annotation.PostMapping
+
+@RequestController("/notification")
+class NotificationController(
+    private val saveDeviceTokenService: SaveDeviceTokenService
+) {
+
+    @PostMapping("/save/{deviceToken}")
+    fun save(@PathVariable deviceToken: String): ResponseEntity<Void> =
+        saveDeviceTokenService.execute(deviceToken)
+            .let { ResponseEntity.status(HttpStatus.CREATED).build() }
+}

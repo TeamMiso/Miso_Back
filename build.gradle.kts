@@ -64,6 +64,9 @@ dependencies {
 
 	// web_hook
 	implementation(Dependencies.OK_HTTP)
+
+	// fcm
+	implementation(Dependencies.FCM)
 }
 
 tasks.withType<KotlinCompile> {

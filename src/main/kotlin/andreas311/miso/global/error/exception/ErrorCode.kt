@@ -11,7 +11,7 @@ enum class ErrorCode(
     // MAIL
     EMAIL_SEND_FAIL(500, "사용자를 찾을 수 없습니다."),
 
-    //FILE
+    // FILE
     INVALID_FORMAT_FILE(400, "잘못된 형식의 파일입니다."),
     FILE_UPLOAD_FAIL(500, "파일 업로드에 실패했습니다."),
 

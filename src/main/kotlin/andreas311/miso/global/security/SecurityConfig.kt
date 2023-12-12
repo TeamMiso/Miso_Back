@@ -69,6 +69,8 @@ class SecurityConfig(
             .antMatchers(HttpMethod.GET, "/recyclables/all").authenticated()
             .antMatchers(HttpMethod.POST, "/recyclables/process_image").authenticated()
 
+            .antMatchers(HttpMethod.POST, "/notification/save/{deviceToken}").authenticated()
+
             .anyRequest().denyAll()
             .and()
             .exceptionHandling()
