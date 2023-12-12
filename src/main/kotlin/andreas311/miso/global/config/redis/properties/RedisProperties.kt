@@ -1,4 +1,4 @@
-package andreas311.miso.global.redis.properties
+package andreas311.miso.global.config.redis.properties
 
 import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.boot.context.properties.ConstructorBinding
