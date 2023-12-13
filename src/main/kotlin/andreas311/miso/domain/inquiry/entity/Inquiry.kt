@@ -15,10 +15,10 @@ class Inquiry(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long,
 
-    @Column(name = "title")
+    @Column(name = "title", length = 100)
     val title: String,
 
-    @Column(name = "content")
+    @Column(name = "content", length = 500)
     val content: String,
 
     @Column(name = "imageUrl")
