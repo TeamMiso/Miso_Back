@@ -7,7 +7,9 @@ data class DetailRecyclablesResponseDto(
     val id: Long,
     val title: String,
     val subTitle: String,
-    val content: String,
+    val recycleMethod: String,
+    val recycleTip: String,
+    val recycleCaution: String,
     val imageUrl: String,
     val recyclablesType: RecyclablesType,
     val recycleMark: String
@@ -16,7 +18,9 @@ data class DetailRecyclablesResponseDto(
         id = recyclables.id,
         title = recyclables.title,
         subTitle = recyclables.subTitle,
-        content = recyclables.content,
+        recycleMethod = recyclables.recycleMethod,
+        recycleTip = recyclables.recycleTip,
+        recycleCaution = recyclables.recycleCaution,
         imageUrl = recyclables.imageUrl,
         recyclablesType = recyclables.recyclablesType,
         recycleMark = recyclables.recycleMark
