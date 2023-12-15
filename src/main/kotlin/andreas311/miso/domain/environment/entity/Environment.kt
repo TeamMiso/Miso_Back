@@ -1,4 +1,4 @@
-package andreas311.miso.domain.environment
+package andreas311.miso.domain.environment.entity
 
 import org.hibernate.annotations.DynamicUpdate
 import javax.persistence.*

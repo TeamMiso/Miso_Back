@@ -19,13 +19,13 @@ class Recyclables(
     @Column(name = "sub_title")
     val subTitle: String,
 
-    @Column(name = "recycle_method", length = 10000)
+    @Column(name = "recycle_method", length = 5000)
     val recycleMethod: String,
 
-    @Column(name = "recycle_tip", length = 10000)
+    @Column(name = "recycle_tip", length = 5000)
     val recycleTip: String,
 
-    @Column(name = "recycle_caution", length = 10000)
+    @Column(name = "recycle_caution", length = 5000)
     val recycleCaution: String,
 
     @Column(name = "imageUrl")
