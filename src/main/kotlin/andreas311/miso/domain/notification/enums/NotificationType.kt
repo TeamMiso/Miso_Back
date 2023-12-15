@@ -10,13 +10,8 @@ enum class NotificationType(
         content = "최대한 빠르게 답변 드릴테니 기다려주세요 :)"
     ),
 
-    INQUIRY_ADOPT(
-        title = "MISO 문의사항 채택 완료!",
-        content = "자세한 사항은 앱에서 확인해주세요 :)"
-    ),
-
-    INQUIRY_UNADOPT(
-        title = "MISO 문의사항 비채택..",
-        content = "자세한 사항은 앱에서 확인해주세요 :("
-    ),
+    INQUIRY_COMPLETE(
+        title = "MISO 문의사항 답변 도착!",
+        content = "내 문의 내역에서 답변을 확인해주세요 :)"
+    )
 }
