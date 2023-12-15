@@ -5,7 +5,6 @@ import andreas311.miso.domain.notification.presentation.data.response.DetailNoti
 import andreas311.miso.domain.notification.repository.NotificationRepository
 import andreas311.miso.domain.notification.service.DetailNotificationService
 import andreas311.miso.global.annotation.ReadOnlyService
-import org.springframework.data.repository.findByIdOrNull
 
 @ReadOnlyService
 class DetailNotificationServiceImpl(
@@ -14,7 +13,7 @@ class DetailNotificationServiceImpl(
 
     override fun execute(id: Long): DetailNotificationResponseDto {
 
-        val notification = notificationRepository.findByIdOrNull(id)
+        val notification = notificationRepository.findByInquiryId(id)
             ?: throw NotificationNotFoundException()
 
         return DetailNotificationResponseDto(notification)
