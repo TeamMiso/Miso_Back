@@ -17,4 +17,7 @@ object DependencyVersions {
 
     // web_hook
     const val OK_HTTP_VERSION = "4.10.0"
+
+    // fcm
+    const val FCM_VERSION = "9.1.1"
 }

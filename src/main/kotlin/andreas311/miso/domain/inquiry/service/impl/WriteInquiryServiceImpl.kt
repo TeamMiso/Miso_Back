@@ -7,6 +7,8 @@ import andreas311.miso.domain.inquiry.presentation.data.dto.WriteInquiryDto
 import andreas311.miso.domain.inquiry.presentation.data.request.WriteInquiryRequestDto
 import andreas311.miso.domain.inquiry.service.WriteInquiryService
 import andreas311.miso.domain.inquiry.util.InquiryUtil
+import andreas311.miso.domain.notification.repository.DeviceTokenRepository
+import andreas311.miso.domain.notification.service.NotificationSendService
 import andreas311.miso.domain.user.entity.User
 import andreas311.miso.global.annotation.RollbackService
 import andreas311.miso.global.discord.DiscordUtil
@@ -18,7 +20,9 @@ class WriteInquiryServiceImpl(
     private val userUtil: UserUtil,
     private val inquiryUtil: InquiryUtil,
     private val discordUtil: DiscordUtil,
-    private val fileService: FileService
+    private val fileService: FileService,
+    private val deviceTokenRepository: DeviceTokenRepository,
+    private val notificationSendService: NotificationSendService
 ) : WriteInquiryService {
 
     override fun execute(writeInquiryRequestDto: WriteInquiryRequestDto, multipartFile: MultipartFile?): Inquiry {
@@ -39,8 +43,13 @@ class WriteInquiryServiceImpl(
 
         sendDiscordMessage(writeInquiryRequestDto)
 
-        return toEntity(writeInquiryDto, user, imageUrl)
-            .let { inquiryUtil.saveInquiry(inquiry = it) }
+        val inquiry = toEntity(writeInquiryDto, user, imageUrl)
+
+        val token = deviceTokenRepository.findByUser(user)
+
+        token?.let { notificationSendService.execute(inquiry, token.token) }
+
+        return inquiryUtil.saveInquiry(inquiry)
     }
 
     private fun toEntity(writeInquiryDto: WriteInquiryDto, user: User, imageUrl: String?): Inquiry =

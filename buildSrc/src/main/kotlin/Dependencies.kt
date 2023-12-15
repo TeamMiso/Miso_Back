@@ -31,4 +31,7 @@ object Dependencies {
 
     // web_hook
     const val OK_HTTP = "com.squareup.okhttp3:okhttp:${DependencyVersions.OK_HTTP_VERSION}"
+
+    // fcm
+    const val FCM = "com.google.firebase:firebase-admin:${DependencyVersions.FCM_VERSION}"
 }

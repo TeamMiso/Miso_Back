@@ -61,13 +61,17 @@ class SecurityConfig(
             .antMatchers(HttpMethod.GET, "/inquiry").authenticated()
             .antMatchers(HttpMethod.GET, "/inquiry/all").hasAuthority("ROLE_ADMIN")
             .antMatchers(HttpMethod.GET, "/inquiry/{id}").authenticated()
-            .antMatchers(HttpMethod.PATCH, "/inquiry/adopt/{id}").hasAuthority("ROLE_ADMIN")
-            .antMatchers(HttpMethod.PATCH, "/inquiry/unadopt/{id}").hasAuthority("ROLE_ADMIN")
+            .antMatchers(HttpMethod.PATCH, "/inquiry/respond/{id}").hasAuthority("ROLE_ADMIN")
 
             .antMatchers(HttpMethod.GET, "/recyclables").authenticated()
             .antMatchers(HttpMethod.GET, "/recyclables/search").authenticated()
             .antMatchers(HttpMethod.GET, "/recyclables/all").authenticated()
-            .antMatchers(HttpMethod.POST, "/recyclables/process_image").authenticated()
+            .antMatchers(HttpMethod.POST, "/recyclables/process").authenticated()
+
+            .antMatchers(HttpMethod.POST, "/notification/save/{deviceToken}").authenticated()
+            .antMatchers(HttpMethod.GET, "/notification/{id}").authenticated()
+
+            .antMatchers(HttpMethod.GET, "/environment").authenticated()
 
             .anyRequest().denyAll()
             .and()

@@ -1,0 +1,7 @@
+package andreas311.miso.domain.notification.exception
+
+import andreas311.miso.global.error.exception.ErrorCode
+import andreas311.miso.global.error.exception.MisoException
+
+class NotificationNotFoundException : MisoException(ErrorCode.NOTIFICATION_NOT_FOUND) {
+}

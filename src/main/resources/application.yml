@@ -66,4 +66,8 @@ discord:
   webhook:
     url: ${WEBHOOK_URL}
 
-secret-url: ${SECRET_URL}
+ai:
+  url: ${AI_URL}
+
+fcm:
+  url: ${FCM_URL}

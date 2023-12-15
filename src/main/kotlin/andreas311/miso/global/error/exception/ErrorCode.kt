@@ -11,7 +11,7 @@ enum class ErrorCode(
     // MAIL
     EMAIL_SEND_FAIL(500, "사용자를 찾을 수 없습니다."),
 
-    //FILE
+    // FILE
     INVALID_FORMAT_FILE(400, "잘못된 형식의 파일입니다."),
     FILE_UPLOAD_FAIL(500, "파일 업로드에 실패했습니다."),
 
@@ -39,5 +39,8 @@ enum class ErrorCode(
     INQUIRY_LOG_NOT_FOUND(404, "문의 내역을 찾을 수 없습니다."),
 
     // RECYCLABLES
-    RECYCLABLES_NOT_FOUND(404, "분리수거 페이지를 찾을 수 없습니다.")
+    RECYCLABLES_NOT_FOUND(404, "분리수거 페이지를 찾을 수 없습니다."),
+
+    // NOTIFICATION
+    NOTIFICATION_NOT_FOUND(404, "문의 사항 답변을 찾을 수 없습니다.")
 }

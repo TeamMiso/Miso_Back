@@ -41,7 +41,7 @@ class RecyclablesController(
         listAllRecyclablesService.execute()
             .let { ResponseEntity.status(HttpStatus.OK).body(it) }
 
-    @PostMapping("/process_image")
+    @PostMapping("/process")
     fun process(@RequestPart(value = "recyclables") multipartFile: MultipartFile): ResponseEntity<ListDetailRecyclablesResponseDto> =
         processRecyclablesImageService.execute(multipartFile)
             .let { ResponseEntity.status(HttpStatus.OK).body(it) }

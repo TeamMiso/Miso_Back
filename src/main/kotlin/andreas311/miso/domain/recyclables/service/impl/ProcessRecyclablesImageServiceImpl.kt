@@ -20,7 +20,7 @@ class ProcessRecyclablesImageServiceImpl(
     private val recyclablesRepository: RecyclablesRepository
 ) : ProcessRecyclablesImageService {
 
-    @Value("\${secret-url}")
+    @Value("\${ai.url}")
     private val url: String = ""
 
     override fun execute(multipartFile: MultipartFile): ListDetailRecyclablesResponseDto {
