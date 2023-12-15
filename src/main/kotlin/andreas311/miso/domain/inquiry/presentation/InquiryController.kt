@@ -22,8 +22,7 @@ class InquiryController(
     private val listMyInquiryService: ListMyInquiryService,
     private val detailInquiryService: DetailInquiryService,
     private val listAllInquiryService: ListAllInquiryService,
-    private val adoptInquiryService: AdoptInquiryService,
-    private val unAdoptInquiryService: UnAdoptInquiryService
+    private val respondInquiryService: RespondInquiryService,
 ) {
 
     @PostMapping
@@ -49,13 +48,8 @@ class InquiryController(
         detailInquiryService.execute(id)
             .let { ResponseEntity.status(HttpStatus.OK).body(it) }
 
-    @PatchMapping("/adopt/{id}")
-    fun adopt(@PathVariable id: Long, @RequestBody writeNotificationRequestDto: WriteNotificationRequestDto): ResponseEntity<Void> =
-        adoptInquiryService.execute(id, writeNotificationRequestDto)
-            .let { ResponseEntity.status(HttpStatus.OK).build() }
-
-    @PatchMapping("/unadopt/{id}")
-    fun unAdopt(@PathVariable id: Long, @RequestBody writeNotificationRequestDto: WriteNotificationRequestDto): ResponseEntity<Void> =
-        unAdoptInquiryService.execute(id, writeNotificationRequestDto)
+    @PatchMapping("/respond/{id}")
+    fun respond(@PathVariable id: Long, @RequestBody writeNotificationRequestDto: WriteNotificationRequestDto): ResponseEntity<Void> =
+        respondInquiryService.execute(id, writeNotificationRequestDto)
             .let { ResponseEntity.status(HttpStatus.OK).build() }
 }
