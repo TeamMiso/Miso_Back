@@ -21,8 +21,8 @@ class NotificationController(
         saveDeviceTokenService.execute(deviceToken)
             .let { ResponseEntity.status(HttpStatus.CREATED).build() }
 
-    @GetMapping("/detail")
-    fun detail(@PathVariable id: Long): ResponseEntity<DetailNotificationResponseDto> =
+    @GetMapping("/{id}")
+    fun getNotification(@PathVariable id: Long): ResponseEntity<DetailNotificationResponseDto> =
         detailNotificationService.execute(id)
             .let { ResponseEntity.status(HttpStatus.OK).body(it) }
 }
