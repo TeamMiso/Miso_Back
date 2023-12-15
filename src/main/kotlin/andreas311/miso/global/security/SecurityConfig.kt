@@ -71,6 +71,8 @@ class SecurityConfig(
             .antMatchers(HttpMethod.POST, "/notification/save/{deviceToken}").authenticated()
             .antMatchers(HttpMethod.GET, "/notification/{id}").authenticated()
 
+            .antMatchers(HttpMethod.GET, "/environment").authenticated()
+
             .anyRequest().denyAll()
             .and()
             .exceptionHandling()
