@@ -15,9 +15,8 @@ class NotificationSendServiceImpl(
 
     override fun execute(inquiry: Inquiry, token: String) {
         val notificationType = when (inquiry.inquiryStatus) {
-            InquiryStatus.ADOPT -> NotificationType.INQUIRY_ADOPT
-            InquiryStatus.UNADOPT -> NotificationType.INQUIRY_UNADOPT
             InquiryStatus.WAIT -> NotificationType.INQUIRT_WAIT
+            InquiryStatus.COMPLETE -> NotificationType.INQUIRY_COMPLETE
         }
 
         runCatching {
