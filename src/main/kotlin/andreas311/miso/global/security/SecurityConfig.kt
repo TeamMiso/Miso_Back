@@ -66,7 +66,7 @@ class SecurityConfig(
             .antMatchers(HttpMethod.GET, "/recyclables").authenticated()
             .antMatchers(HttpMethod.GET, "/recyclables/search").authenticated()
             .antMatchers(HttpMethod.GET, "/recyclables/all").authenticated()
-            .antMatchers(HttpMethod.POST, "/recyclables/process_image").authenticated()
+            .antMatchers(HttpMethod.POST, "/recyclables/process").authenticated()
 
             .antMatchers(HttpMethod.POST, "/notification/save/{deviceToken}").authenticated()
             .antMatchers(HttpMethod.GET, "/notification/{id}").authenticated()
