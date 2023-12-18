@@ -4,14 +4,14 @@ import andreas311.miso.domain.inquiry.entity.Inquiry
 import andreas311.miso.domain.inquiry.enums.InquiryStatus
 import andreas311.miso.domain.notification.entity.data.NotificationAlarm
 import andreas311.miso.domain.notification.enums.NotificationType
-import andreas311.miso.domain.notification.service.NotificationSendService
+import andreas311.miso.domain.notification.service.InquiryNotificationSendService
 import andreas311.miso.global.annotation.RollbackService
 import andreas311.miso.global.util.FcmUtil
 
 @RollbackService
-class NotificationSendServiceImpl(
+class InquiryNotificationSendServiceImpl(
     private val fcmUtil: FcmUtil,
-) : NotificationSendService {
+) : InquiryNotificationSendService {
 
     override fun execute(inquiry: Inquiry, token: String) {
         val notificationType = when (inquiry.inquiryStatus) {
@@ -20,7 +20,7 @@ class NotificationSendServiceImpl(
         }
 
         runCatching {
-            fcmUtil.sendNotification(
+            fcmUtil.sendInquiryNotification(
                 deviceToken = token,
                 notificationAlarm = NotificationAlarm(
                     title = notificationType.title,

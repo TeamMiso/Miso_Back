@@ -13,5 +13,10 @@ enum class NotificationType(
     INQUIRY_COMPLETE(
         title = "MISO 문의사항 답변 도착!",
         content = "내 문의 내역에서 답변을 확인해주세요 :)"
+    ),
+
+    ENVIRONMENT(
+        title = "오늘의 환경 지식을 알고 싶다면?",
+        content = "MISO 에서 오늘의 환경 지식을 확인해보세요 :)"
     )
 }
