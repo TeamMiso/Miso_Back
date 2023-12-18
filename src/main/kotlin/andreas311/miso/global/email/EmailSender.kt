@@ -22,7 +22,7 @@ class EmailSender(
     }
 
     private fun sendAuthEmail(email: String, randomKey: String) {
-        val subject = "Miso 인증 번호가 도착했습니다!"
+        val subject = "MISO 인증번호가 도착했습니다!"
         val content = buildEmailContent(randomKey)
 
         try {
@@ -36,14 +36,14 @@ class EmailSender(
     private fun buildEmailContent(randomKey: String): String {
         return """
             <div style='margin:100px;'>
-            <h1> 안녕하세요 Team Miso 입니다! </h1>
+            <h1> 안녕하세요 MISO 입니다! </h1>
             <br>
-            <h2><p>아래 인증 번호를 인증 페이지로 돌아가 입력해주세요. 이용해 주셔서 감사합니다!<p></h2>
+            <h2><p>아래 인증번호를 인증 페이지로 돌아가 입력해 주세요. 이용해 주셔서 감사합니다!<p></h2>
             <br>
             <div align='center' style='border:1px solid black; font-family:verdana';>
-            <h3 style='color:blue;'>인증 번호는 다음과 같습니다!</h3>
+            <h3 style='color:blue;'>인증번호는 다음과 같습니다!</h3>
             <div style='font-size:130%'>
-            인증 번호 : <strong>$randomKey</strong><div><br/> 
+            인증번호 : <strong>$randomKey</strong><div><br/> 
             </div>
         """.trimIndent()
     }
