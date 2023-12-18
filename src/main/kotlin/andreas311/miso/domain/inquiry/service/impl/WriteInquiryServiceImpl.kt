@@ -8,7 +8,7 @@ import andreas311.miso.domain.inquiry.presentation.data.request.WriteInquiryRequ
 import andreas311.miso.domain.inquiry.service.WriteInquiryService
 import andreas311.miso.domain.inquiry.util.InquiryUtil
 import andreas311.miso.domain.notification.repository.DeviceTokenRepository
-import andreas311.miso.domain.notification.service.NotificationSendService
+import andreas311.miso.domain.notification.service.InquiryNotificationSendService
 import andreas311.miso.domain.user.entity.User
 import andreas311.miso.global.annotation.RollbackService
 import andreas311.miso.global.discord.DiscordUtil
@@ -22,7 +22,7 @@ class WriteInquiryServiceImpl(
     private val discordUtil: DiscordUtil,
     private val fileService: FileService,
     private val deviceTokenRepository: DeviceTokenRepository,
-    private val notificationSendService: NotificationSendService
+    private val inquiryNotificationSendService: InquiryNotificationSendService
 ) : WriteInquiryService {
 
     override fun execute(writeInquiryRequestDto: WriteInquiryRequestDto, multipartFile: MultipartFile?): Inquiry {
@@ -47,7 +47,7 @@ class WriteInquiryServiceImpl(
 
         val token = deviceTokenRepository.findByUser(user)
 
-        token?.let { notificationSendService.execute(inquiry, token.token) }
+        token?.let { inquiryNotificationSendService.execute(inquiry, token.token) }
 
         return inquiryUtil.saveInquiry(inquiry)
     }
