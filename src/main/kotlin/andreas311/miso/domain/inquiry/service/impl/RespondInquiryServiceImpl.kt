@@ -9,7 +9,7 @@ import andreas311.miso.domain.notification.entity.Notification
 import andreas311.miso.domain.notification.presentation.data.dto.WriteNotificationDto
 import andreas311.miso.domain.notification.presentation.data.request.WriteNotificationRequestDto
 import andreas311.miso.domain.notification.repository.DeviceTokenRepository
-import andreas311.miso.domain.notification.service.NotificationSendService
+import andreas311.miso.domain.notification.service.InquiryNotificationSendService
 import andreas311.miso.domain.notification.util.NotificationUtil
 import andreas311.miso.domain.user.entity.User
 import andreas311.miso.global.annotation.RollbackService
@@ -22,7 +22,7 @@ class RespondInquiryServiceImpl(
     private val notificationUtil: NotificationUtil,
     private val inquiryRepository: InquiryRepository,
     private val deviceTokenRepository: DeviceTokenRepository,
-    private val notificationSendService: NotificationSendService
+    private val inquiryNotificationSendService: InquiryNotificationSendService
 ) : RespondInquiryService {
 
     override fun execute(id: Long, writeNotificationRequestDto: WriteNotificationRequestDto): Notification {
@@ -38,7 +38,7 @@ class RespondInquiryServiceImpl(
 
         val token = deviceTokenRepository.findByUser(user)
 
-        token?.let { notificationSendService.execute(inquiry, token.token)}
+        token?.let { inquiryNotificationSendService.execute(inquiry, token.token)}
 
         return toEntity(writeNotificationDto, user, inquiry)
             .let { notificationUtil.saveNotification(notification = it) }
