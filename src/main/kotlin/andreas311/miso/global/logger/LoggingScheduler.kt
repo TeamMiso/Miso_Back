@@ -1,6 +1,6 @@
 package andreas311.miso.global.logger
 
-import andreas311.miso.global.discord.DiscordUtil
+import andreas311.miso.global.thirdparty.discord.DiscordUtil
 import com.amazonaws.services.s3.AmazonS3
 import com.amazonaws.services.s3.model.CannedAccessControlList
 import com.amazonaws.services.s3.model.ObjectMetadata
