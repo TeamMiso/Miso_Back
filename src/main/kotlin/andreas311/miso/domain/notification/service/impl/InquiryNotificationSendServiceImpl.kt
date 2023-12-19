@@ -6,7 +6,7 @@ import andreas311.miso.domain.notification.entity.data.NotificationAlarm
 import andreas311.miso.domain.notification.enums.NotificationType
 import andreas311.miso.domain.notification.service.InquiryNotificationSendService
 import andreas311.miso.global.annotation.RollbackService
-import andreas311.miso.global.util.FcmUtil
+import andreas311.miso.global.thirdparty.fcm.FcmUtil
 
 @RollbackService
 class InquiryNotificationSendServiceImpl(

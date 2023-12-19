@@ -11,7 +11,7 @@ import andreas311.miso.domain.notification.repository.DeviceTokenRepository
 import andreas311.miso.domain.notification.service.InquiryNotificationSendService
 import andreas311.miso.domain.user.entity.User
 import andreas311.miso.global.annotation.RollbackService
-import andreas311.miso.global.discord.DiscordUtil
+import andreas311.miso.global.thirdparty.discord.DiscordUtil
 import andreas311.miso.global.util.UserUtil
 import org.springframework.web.multipart.MultipartFile
 

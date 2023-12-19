@@ -1,4 +1,4 @@
-package andreas311.miso.global.discord
+package andreas311.miso.global.thirdparty.discord
 
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
