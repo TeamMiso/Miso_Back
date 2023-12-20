@@ -6,5 +6,7 @@ import org.springframework.data.repository.CrudRepository
 
 interface InquiryRepository : CrudRepository<Inquiry, Long> {
 
-    fun findByUser(user: User): List<Inquiry>?
+    fun findAllByOrderByCreatedDateDesc(): List<Inquiry>
+
+    fun findByUserOrderByCreatedDateDesc(user: User): List<Inquiry>?
 }

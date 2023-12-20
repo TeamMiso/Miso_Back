@@ -18,7 +18,7 @@ class ListMyPurchaseItemServiceImpl(
 
         val user = userUtil.currentUser()
 
-        val purchase = purchaseRepository.findAllByUser(user)
+        val purchase = purchaseRepository.findAllByUserOrderByCreatedDateDesc(user)
             ?: throw PurchaseNotFoundException()
 
         return ListMyPurchaseItemResponseDto(

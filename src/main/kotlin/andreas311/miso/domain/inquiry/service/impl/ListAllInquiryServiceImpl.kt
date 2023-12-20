@@ -12,7 +12,7 @@ class ListAllInquiryServiceImpl(
 ) : ListAllInquiryService {
 
     override fun execute(): ListInquiryResponseDto = ListInquiryResponseDto(
-        inquiryList = inquiryRepository.findAll()
+        inquiryList = inquiryRepository.findAllByOrderByCreatedDateDesc()
             .map { InquiryResponseDto(it) }
     )
 }
