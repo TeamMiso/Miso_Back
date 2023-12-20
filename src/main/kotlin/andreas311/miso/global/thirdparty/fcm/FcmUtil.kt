@@ -1,4 +1,4 @@
-package andreas311.miso.global.util
+package andreas311.miso.global.thirdparty.fcm
 
 import andreas311.miso.domain.notification.entity.data.NotificationAlarm
 import com.google.firebase.messaging.FirebaseMessaging

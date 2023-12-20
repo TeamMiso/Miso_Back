@@ -1,4 +1,4 @@
-package andreas311.miso.global.email
+package andreas311.miso.global.thirdparty.email
 
 import andreas311.miso.domain.email.entity.Email
 import andreas311.miso.domain.email.exception.EmailSendFailedException

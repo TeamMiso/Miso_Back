@@ -36,7 +36,7 @@ class RespondInquiryServiceImpl(
 
         inquiry.updateInquiryStatus(InquiryStatus.COMPLETE)
 
-        val token = deviceTokenRepository.findByUser(user)
+        val token = deviceTokenRepository.findByUser(inquiry.user)
 
         token?.let { inquiryNotificationSendService.execute(inquiry, token.token)}
 
@@ -47,15 +47,13 @@ class RespondInquiryServiceImpl(
     private fun toEntity(writeNotificationDto: WriteNotificationDto, user: User, inquiry: Inquiry): Notification =
         Notification(
             id = 0L,
-            title = writeNotificationDto.title,
-            content = writeNotificationDto.content,
+            answer = writeNotificationDto.answer,
             user = user,
             inquiry = inquiry
         )
 
     private fun toDto(writeNotificationRequestDto: WriteNotificationRequestDto): WriteNotificationDto =
         WriteNotificationDto(
-            title = writeNotificationRequestDto.title,
-            content = writeNotificationRequestDto.content
+            answer = writeNotificationRequestDto.answer
         )
 }

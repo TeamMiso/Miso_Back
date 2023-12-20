@@ -14,11 +14,8 @@ class Notification(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long,
 
-    @Column(name = "title")
-    val title: String,
-
-    @Column(name = "content")
-    val content: String,
+    @Column(name = "answer")
+    val answer: String,
 
     @ManyToOne
     @JoinColumn(name = "inquiry_id")

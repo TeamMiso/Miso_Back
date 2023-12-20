@@ -18,7 +18,7 @@ class ListMyInquiryServiceImpl(
 
         val user = userUtil.currentUser()
 
-        val inquiry = inquiryRepository.findByUser(user)
+        val inquiry = inquiryRepository.findByUserOrderByCreatedDateDesc(user)
             ?: throw InquiryNotFoundException()
 
         return ListInquiryResponseDto(
