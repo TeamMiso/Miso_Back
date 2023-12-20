@@ -36,7 +36,7 @@ class RespondInquiryServiceImpl(
 
         inquiry.updateInquiryStatus(InquiryStatus.COMPLETE)
 
-        val token = deviceTokenRepository.findByUser(user)
+        val token = deviceTokenRepository.findByUser(inquiry.user)
 
         token?.let { inquiryNotificationSendService.execute(inquiry, token.token)}
 
