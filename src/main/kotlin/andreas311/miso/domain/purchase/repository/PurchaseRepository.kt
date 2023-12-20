@@ -6,5 +6,5 @@ import org.springframework.data.repository.CrudRepository
 
 interface PurchaseRepository : CrudRepository<Purchase, Long> {
 
-    fun findAllByUser(user: User): List<Purchase>?
+    fun findAllByUserOrderByCreatedDateDesc(user: User): List<Purchase>?
 }
