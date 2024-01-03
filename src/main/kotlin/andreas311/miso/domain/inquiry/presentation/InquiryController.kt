@@ -19,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile
 
 @RequestController("/inquiry")
 class InquiryController(
+    private val listInquiryService: ListInquiryService,
     private val writeInquiryService: WriteInquiryService,
     private val listMyInquiryService: ListMyInquiryService,
     private val detailInquiryService: DetailInquiryService,
@@ -43,6 +44,11 @@ class InquiryController(
     @GetMapping("/all")
     fun inquiryAll(): ResponseEntity<ListInquiryResponseDto> =
         listAllInquiryService.execute()
+            .let { ResponseEntity.status(HttpStatus.OK).body(it) }
+
+    @GetMapping("/list")
+    fun inquiryList(): ResponseEntity<ListInquiryResponseDto> =
+        listInquiryService.execute()
             .let { ResponseEntity.status(HttpStatus.OK).body(it) }
 
     @GetMapping("/filter/{state}")

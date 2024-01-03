@@ -9,7 +9,7 @@ interface InquiryRepository : CrudRepository<Inquiry, Long> {
 
     fun findAllByOrderByCreatedDateDesc(): List<Inquiry>
 
-    fun findByUserOrderByCreatedDateDesc(user: User): List<Inquiry>?
+    fun findByUserOrderByCreatedDateDesc(user: User): List<Inquiry>
 
     fun findAllByInquiryStatusOrderByCreatedDateDesc(inquiryStatus: InquiryStatus): List<Inquiry>
 
