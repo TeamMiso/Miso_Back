@@ -1,5 +1,6 @@
 package andreas311.miso.domain.inquiry.presentation
 
+import andreas311.miso.domain.inquiry.enums.InquiryStatus
 import andreas311.miso.domain.inquiry.presentation.data.request.WriteInquiryRequestDto
 import andreas311.miso.domain.inquiry.presentation.data.response.DetailInquiryResponseDto
 import andreas311.miso.domain.inquiry.presentation.data.response.ListInquiryResponseDto
@@ -18,11 +19,13 @@ import org.springframework.web.multipart.MultipartFile
 
 @RequestController("/inquiry")
 class InquiryController(
+    private val listInquiryService: ListInquiryService,
     private val writeInquiryService: WriteInquiryService,
     private val listMyInquiryService: ListMyInquiryService,
     private val detailInquiryService: DetailInquiryService,
     private val listAllInquiryService: ListAllInquiryService,
     private val respondInquiryService: RespondInquiryService,
+    private val listFilterInquiryService: ListFilterInquiryService
 ) {
 
     @PostMapping
@@ -41,6 +44,16 @@ class InquiryController(
     @GetMapping("/all")
     fun inquiryAll(): ResponseEntity<ListInquiryResponseDto> =
         listAllInquiryService.execute()
+            .let { ResponseEntity.status(HttpStatus.OK).body(it) }
+
+    @GetMapping("/list")
+    fun inquiryList(): ResponseEntity<ListInquiryResponseDto> =
+        listInquiryService.execute()
+            .let { ResponseEntity.status(HttpStatus.OK).body(it) }
+
+    @GetMapping("/filter/{state}")
+    fun inquiryFilter(@PathVariable(name = "state") inquiryStatus: InquiryStatus): ResponseEntity<ListInquiryResponseDto> =
+        listFilterInquiryService.execute(inquiryStatus)
             .let { ResponseEntity.status(HttpStatus.OK).body(it) }
 
     @GetMapping("/{id}")
