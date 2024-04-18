@@ -20,7 +20,7 @@ class EnvironmentNotificationSendServiceImpl(
                 deviceTokens = deviceTokenRepository.findAll().map { it.token },
                 notificationAlarm = NotificationAlarm(
                     title = NotificationType.ENVIRONMENT.title,
-                    content = NotificationType.ENVIRONMENT.content,
+                    body = NotificationType.ENVIRONMENT.body,
                     writer = "미소"
                 )
             )
