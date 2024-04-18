@@ -4,7 +4,6 @@ import andreas311.miso.domain.notification.entity.data.NotificationAlarm
 import com.google.firebase.messaging.FirebaseMessaging
 import com.google.firebase.messaging.Message
 import com.google.firebase.messaging.MulticastMessage
-import com.google.firebase.messaging.Notification
 import org.springframework.stereotype.Component
 
 @Component
@@ -30,23 +29,15 @@ class FcmUtil {
     private fun getMassageBuilderByNotification(notificationAlarm: NotificationAlarm) =
         with(notificationAlarm) {
             Message.builder()
-                .setNotification(
-                    Notification.builder()
-                        .setTitle(title)
-                        .setBody(content)
-                        .build()
-                )
+                .putData("title", title)
+                .putData("body", body)
         }
 
     private fun getMulticastMassageBuilderByNotification(notificationAlarm: NotificationAlarm) =
         with(notificationAlarm) {
             MulticastMessage.builder()
-                .setNotification(
-                    Notification.builder()
-                        .setTitle(title)
-                        .setBody(content)
-                        .build()
-                )
+                .putData("title", title)
+                .putData("body", body)
         }
 
 }
