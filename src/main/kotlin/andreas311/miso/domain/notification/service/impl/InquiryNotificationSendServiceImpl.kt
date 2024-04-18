@@ -15,7 +15,7 @@ class InquiryNotificationSendServiceImpl(
 
     override fun execute(inquiry: Inquiry, token: String) {
         val notificationType = when (inquiry.inquiryStatus) {
-            InquiryStatus.WAIT -> NotificationType.INQUIRT_WAIT
+            InquiryStatus.WAIT -> NotificationType.INQUIRY_WAIT
             InquiryStatus.COMPLETE -> NotificationType.INQUIRY_COMPLETE
         }
 
@@ -24,7 +24,7 @@ class InquiryNotificationSendServiceImpl(
                 deviceToken = token,
                 notificationAlarm = NotificationAlarm(
                     title = notificationType.title,
-                    content = notificationType.content,
+                    body = notificationType.body,
                     writer = "미소"
                 )
             )
